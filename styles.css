@@ -128,12 +128,9 @@ input, textarea, select { font-family: inherit; color: inherit; }
 .nav-brand { display: flex; align-items: center; gap: 10px; margin-inline-end: auto; }
 .nav-brand-logo {
   width: 40px; height: 40px; border-radius: 10px;
-  background: var(--ink); display: grid; place-items: center;
+  display: grid; place-items: center;
   overflow: hidden;
 }
-[data-theme="dark"] .nav-brand-logo { background: var(--ivory-2); }
-.nav-brand-logo img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
-[data-theme="dark"] .nav-brand-logo img { mix-blend-mode: screen; filter: invert(1) hue-rotate(180deg); }
 .nav-brand-text { display: flex; flex-direction: column; line-height: 1; }
 .nav-brand-name { font-family: var(--serif); font-size: 20px; font-weight: 700; letter-spacing: 0.02em; }
 .nav-brand-sub { font-size: 9px; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; margin-top: 3px; }

@@ -230,8 +230,29 @@ const Bottle = ({ from = '#0f5c3b', to = '#0e0f10', label = null, style = {} }) 
 };
 
 const LogoMark = ({ size = 40 }) => (
-  <div className="nav-brand-logo" style={{ width: size, height: size }}>
-    <img src="assets/logo.png" alt="DH Parfums" />
+  <div className="nav-brand-logo" style={{ width: size, height: size, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <svg viewBox="0 0 100 120" style={{ width: '100%', height: '100%' }}>
+      <defs>
+        <linearGradient id="diamondGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#2fa774" />
+          <stop offset="50%" stopColor="#0f5c3b" />
+          <stop offset="100%" stopColor="#062e1d" />
+        </linearGradient>
+        <linearGradient id="goldCapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#d9b978" />
+          <stop offset="100%" stopColor="#9e7b39" />
+        </linearGradient>
+      </defs>
+      <polygon points="50,4 68,14 50,26 32,14" fill="url(#diamondGrad)" stroke="#2fa774" strokeWidth="0.8" />
+      <polygon points="32,14 50,26 36,28 24,18" fill="#1e8358" opacity="0.85" />
+      <polygon points="68,14 50,26 64,28 76,18" fill="#47c78d" opacity="0.9" />
+      <polygon points="36,28 50,26 64,28 50,34" fill="#0f5c3b" />
+      <rect x="42" y="34" width="16" height="4" rx="2" fill="url(#goldCapGrad)" />
+      <path d="M 44 38 Q 42 46 32 48 M 56 38 Q 58 46 68 48" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="32" y="80" fontFamily="Cormorant Garamond, serif" fontSize="42" fontWeight="700" fill="currentColor">D</text>
+      <text x="56" y="80" fontFamily="Cormorant Garamond, serif" fontSize="42" fontWeight="700" fill="currentColor">H</text>
+      <text x="50" y="106" textAnchor="middle" fontFamily="Cairo, sans-serif" fontSize="12" fontWeight="700" letterSpacing="3" fill="#0f5c3b">PARFUMS</text>
+    </svg>
   </div>
 );
 
@@ -358,7 +379,7 @@ const Footer = () => (
       <div className="footer-grid">
         <div className="footer-brand">
           <div className="footer-logo-row">
-            <div className="footer-logo"><img src="assets/logo.png" alt="DH Parfums" /></div>
+            <div className="footer-logo"><LogoMark size={48} /></div>
             <div>
               <div className="footer-brand-name">DH Parfums</div>
               <div className="footer-tag">FRAGRANCE HOUSE</div>
