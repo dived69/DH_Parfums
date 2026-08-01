@@ -14,12 +14,12 @@ const CATEGORIES = [
 ];
 
 const SIZES = [
-  { ml: 3,   name: 'التجربة',    price: 800,   desc: 'حجم مثالي للتذوق الأول واختبار العطر قبل الاقتناء الكامل.' },
-  { ml: 6,   name: 'المرافق',    price: 1400,  desc: 'يرافقك في السفر ويناسب حقيبة اليد بأناقة تامة.' },
-  { ml: 12,  name: 'المفضّل',   price: 2500,  desc: 'الأكثر طلباً — يوازن بين السعر ومدة الاستخدام.' },
-  { ml: 30,  name: 'الكلاسيكي', price: 5500,  desc: 'حجم يومي كامل يدوم لأشهر من الاستعمال المنتظم.' },
-  { ml: 50,  name: 'الفاخر',    price: 8500,  desc: 'قنينة راقية بحجم عملي يليق برفوف المجموعة الخاصة.' },
-  { ml: 100, name: 'الاستثنائي',price: 15000, desc: 'الحجم الأكبر لعشّاق العطر الأصلاء والمقتنين الجادّين.' }
+  { ml: 3, name: 'التجربة', price: 800, desc: 'حجم مثالي للتذوق الأول واختبار العطر قبل الاقتناء الكامل.' },
+  { ml: 6, name: 'المرافق', price: 1400, desc: 'يرافقك في السفر ويناسب حقيبة اليد بأناقة تامة.' },
+  { ml: 12, name: 'المفضّل', price: 2500, desc: 'الأكثر طلباً — يوازن بين السعر ومدة الاستخدام.' },
+  { ml: 30, name: 'الكلاسيكي', price: 5500, desc: 'حجم يومي كامل يدوم لأشهر من الاستعمال المنتظم.' },
+  { ml: 50, name: 'الفاخر', price: 8500, desc: 'قنينة راقية بحجم عملي يليق برفوف المجموعة الخاصة.' },
+  { ml: 100, name: 'الاستثنائي', price: 15000, desc: 'الحجم الأكبر لعشّاق العطر الأصلاء والمقتنين الجادّين.' }
 ];
 
 const SEASONS = ['شتاء', 'ربيع', 'صيف', 'خريف', 'كل الفصول'];
@@ -220,7 +220,7 @@ const Bottle = ({ from = '#0f5c3b', to = '#0e0f10', label = null, style = {} }) 
       <rect x="46" y="8" width="28" height="14" rx="2" fill="#0e0f10" />
       <rect x="52" y="22" width="16" height="10" fill="#0e0f10" />
       <path d="M 30 40 Q 30 32 40 32 L 80 32 Q 90 32 90 40 L 90 160 Q 90 172 78 172 L 42 172 Q 30 172 30 160 Z"
-            fill={`url(#bg-${id})`} stroke="rgba(0,0,0,0.2)" strokeWidth="0.5" />
+        fill={`url(#bg-${id})`} stroke="rgba(0,0,0,0.2)" strokeWidth="0.5" />
       <rect x="42" y="95" width="36" height="42" rx="2" fill="rgba(246,242,234,0.92)" />
       <text x="60" y="115" textAnchor="middle" fontFamily="Cormorant Garamond, serif" fontSize="11" fontWeight="700" fill="#0e0f10">DH</text>
       <line x1="48" y1="120" x2="72" y2="120" stroke="#0f5c3b" strokeWidth="0.5" />
@@ -275,13 +275,13 @@ const LogoMark = ({ size = 40 }) => {
 
 // ============ NAVBAR ============
 const NAV_ITEMS = [
-  { id: '',           label: 'الرئيسية' },
-  { id: 'products',   label: 'كل العطور' },
+  { id: '', label: 'الرئيسية' },
+  { id: 'products', label: 'كل العطور' },
   { id: 'categories', label: 'الفئات' },
-  { id: 'sizes',      label: 'الأحجام' },
-  { id: 'favorites',  label: 'المفضلة' },
-  { id: 'about',      label: 'من نحن' },
-  { id: 'contact',    label: 'تواصل' },
+  { id: 'sizes', label: 'الأحجام' },
+  { id: 'favorites', label: 'المفضلة' },
+  { id: 'about', label: 'من نحن' },
+  { id: 'contact', label: 'تواصل' },
 ];
 
 const Navbar = ({ route, theme, toggleTheme, favCount }) => {
@@ -317,7 +317,7 @@ const Navbar = ({ route, theme, toggleTheme, favCount }) => {
           <nav className="nav-links">
             {NAV_ITEMS.map(item => (
               <a key={item.id} href={item.id ? `#/${item.id}` : '#/'}
-                 className={"nav-link" + (currentTop === item.id ? " active" : "")}>
+                className={"nav-link" + (currentTop === item.id ? " active" : "")}>
                 {item.label}
               </a>
             ))}
@@ -377,8 +377,8 @@ const Navbar = ({ route, theme, toggleTheme, favCount }) => {
           </div>
           {NAV_ITEMS.map(item => (
             <a key={item.id} href={item.id ? `#/${item.id}` : '#/'}
-               onClick={() => setDrawerOpen(false)}
-               className={"drawer-link" + (currentTop === item.id ? " active" : "")}>
+              onClick={() => setDrawerOpen(false)}
+              className={"drawer-link" + (currentTop === item.id ? " active" : "")}>
               {item.label}
               {I.arrow}
             </a>
@@ -514,6 +514,21 @@ const ProductCard = ({ product, isFav, toggleFav, showToast }) => {
       <div className="card-body">
         <div className="card-cat">{cat?.name} · {product.type}</div>
         <div className="card-name">{product.name}</div>
+
+        {/* Simple Minimal Product Details (الموسم والثبات) */}
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', margin: '2px 0 4px' }}>
+          {product.season && (
+            <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 999, background: 'var(--ivory-3)', color: 'var(--ink-2)', fontWeight: 500 }}>
+              ❄️ {product.season}
+            </span>
+          )}
+          {product.longevity > 0 && (
+            <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 999, background: 'var(--ivory-3)', color: 'var(--ink-2)', fontWeight: 500 }}>
+              ⏱️ {product.longevity} ساعة
+            </span>
+          )}
+        </div>
+
         <div className="card-desc" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
           {product.desc}
         </div>
@@ -810,7 +825,7 @@ const ProductDetailPage = ({ id, favs, toggleFav, showToast }) => {
             <div className="pd-main-img" style={{ background: `linear-gradient(160deg, ${product.color.from}, ${product.color.to})` }}>
               {product.badge && (
                 <span className={"card-badge" + (product.badgeType === 'gold' ? ' gold' : product.badgeType === 'emerald' ? ' emerald' : '')}
-                      style={{ position: 'absolute', top: 16, insetInlineEnd: 16 }}>
+                  style={{ position: 'absolute', top: 16, insetInlineEnd: 16 }}>
                   {product.badge}
                 </span>
               )}
@@ -839,19 +854,27 @@ const ProductDetailPage = ({ id, favs, toggleFav, showToast }) => {
 
             <div className="pd-meta-grid">
               <div className="pd-meta">
+                <span className="pd-meta-label">الفئة</span>
+                <span className="pd-meta-value">{cat?.name || '—'}</span>
+              </div>
+              <div className="pd-meta">
+                <span className="pd-meta-label">الموسم / الفصل</span>
+                <span className="pd-meta-value">{product.season || 'كل الفصول'}</span>
+              </div>
+              <div className="pd-meta">
                 <span className="pd-meta-label">النوع</span>
                 <span className="pd-meta-value">{product.type}</span>
               </div>
               <div className="pd-meta">
                 <span className="pd-meta-label">الثبات</span>
-                <span className="pd-meta-value">{product.longevity} ساعة</span>
+                <span className="pd-meta-value">{product.longevity || 12} ساعة</span>
               </div>
             </div>
 
             <div className="pd-ctas">
               <a className="btn btn-emerald"
-                 href={`https://wa.me/966500000000?text=${encodeURIComponent(`مرحباً، أرغب بالاستفسار عن ${product.name}`)}`}
-                 target="_blank" rel="noopener">
+                href={`https://wa.me/966500000000?text=${encodeURIComponent(`مرحباً، أرغب بالاستفسار عن ${product.name}`)}`}
+                target="_blank" rel="noopener">
                 {I.whatsapp} استفسر عبر واتساب
               </a>
               <a className="btn btn-primary" href="tel:+966500000000">
