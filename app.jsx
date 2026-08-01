@@ -528,6 +528,47 @@ const ProductCard = ({ product, isFav, toggleFav, showToast }) => {
   );
 };
 
+// ============ CATEGORY CARD (With ALL Product Thumbnail Images) ============
+const CategoryCard = ({ c, index }) => {
+  const catProducts = PRODUCTS.filter(p => p.category === c.id);
+  const productsWithImage = catProducts.filter(p => p.image);
+
+  return (
+    <a href={`#/products?cat=${c.id}`} className={`cat-card ${c.theme}`}>
+      <span className="cat-num">{String(index + 1).padStart(2, '0')}</span>
+
+      {/* Mini thumbnail gallery displaying ALL products in this category */}
+      <div style={{
+        display: 'flex', flexWrap: 'wrap', gap: 5,
+        position: 'absolute', top: 16, insetInlineEnd: 16, insetInlineStart: 60,
+        justifyContent: 'flex-end', maxHeight: 90, overflow: 'hidden', zIndex: 2
+      }}>
+        {productsWithImage.map((p, idx) => (
+          <img
+            key={p.id || idx}
+            src={p.image}
+            alt={p.name}
+            title={p.name}
+            style={{
+              width: 38,
+              height: 48,
+              objectFit: 'cover',
+              borderRadius: 6,
+              border: '1px solid rgba(255,255,255,0.3)',
+              boxShadow: '0 3px 8px rgba(0,0,0,0.35)'
+            }}
+          />
+        ))}
+      </div>
+
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <div className="cat-name">{c.name}</div>
+        <div className="cat-count">{c.en} · {catProducts.length || c.count} عطر</div>
+      </div>
+    </a>
+  );
+};
+
 // ============ SECTION HEAD ============
 const SectionHead = ({ eyebrow, title, desc, link, linkText }) => (
   <div className="section-head fade-in">
@@ -609,6 +650,57 @@ const HomePage = ({ favs, toggleFav, showToast }) => {
             {latest.map(p => (
               <ProductCard key={p.id} product={p} isFav={favs.includes(p.id)} toggleFav={toggleFav} showToast={showToast} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BROWSE BY CATEGORY SECTION */}
+      <section className="section" style={{ background: 'var(--ivory-2)' }}>
+        <div className="container">
+          <SectionHead
+            eyebrow="الفئات"
+            title="تصفّح حسب الفئة"
+            desc="من العطور الرجالية والنسائية إلى عطور النيش والزيوت والبخور — فئات مصممة لتقودك مباشرة إلى ما تحب."
+            link="#/categories"
+          />
+          <div className="cats-grid">
+            {CATEGORIES.map((c, i) => (
+              <CategoryCard key={c.id} c={c} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY US SECTION */}
+      <section className="section">
+        <div className="container">
+          <SectionHead
+            eyebrow="لماذا نحن"
+            title="فخامة يمكن الاعتماد عليها"
+          />
+          <div className="why-grid">
+            <div className="why-card fade-in">
+              <div className="why-icon">{I.sparkle}</div>
+              <h3 className="why-title">مواد أصلية 100%</h3>
+              <p className="why-desc">
+                نستورد الزيوت والخامات مباشرة من مصادرها الأصلية — عود هندي، ورد طائفي،
+                زعفران مغربي — ونعتّقها بأنفسنا لضمان الجودة.
+              </p>
+            </div>
+            <div className="why-card fade-in" style={{ animationDelay: '.1s' }}>
+              <div className="why-icon">{I.droplet}</div>
+              <h3 className="why-title">صياغة يدوية</h3>
+              <p className="why-desc">
+                كل تركيبة تُصنع يدوياً في مختبرنا بإشراف صانع عطور خبير. عناية شخصية بكل قنينة.
+              </p>
+            </div>
+            <div className="why-card fade-in" style={{ animationDelay: '.2s' }}>
+              <div className="why-icon">{I.shield}</div>
+              <h3 className="why-title">ضمان الأصالة</h3>
+              <p className="why-desc">
+                نضمن لك أصالة كل قطعة تصلك، مع إمكانية الاستفسار المباشر حول التركيبة.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -780,13 +872,7 @@ const CategoriesPage = () => (
       <SectionHead eyebrow="Categories" title="تصفّح حسب الفئة" desc="عوالم عطرية تقودك مباشرة إلى ما تحب." />
       <div className="cats-grid">
         {CATEGORIES.map((c, i) => (
-          <a key={c.id} href={`#/products?cat=${c.id}`} className={`cat-card ${c.theme}`}>
-            <span className="cat-num">{String(i + 1).padStart(2, '0')}</span>
-            <div>
-              <div className="cat-name">{c.name}</div>
-              <div className="cat-count">{c.en}</div>
-            </div>
-          </a>
+          <CategoryCard key={c.id} c={c} index={i} />
         ))}
       </div>
     </div>
